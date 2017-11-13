@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02-导航菜单</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #menu {
+            width: 180px;
+            margin: 100px auto 0;
+            border: 1px solid #cccccc;
+        }
+
+        #menu h2 {
+            background-color: cyan;
+            text-indent: 10px;
+        }
+
+        #menu .active {
+            background-color: orange;
+        }
+
+        #menu > li {
+            border-bottom: 1px solid #cccccc;
+        }
+
+        #menu .lis {
+            display: none;
+        }
+
+        #menu .lis li {
+            text-indent: 15px;
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            var oMenu = document.getElementById('menu');
+            var oH2 = oMenu.getElementsByTagName('h2');
+            var oUl = oMenu.getElementsByTagName('ul');
+
+            for (var i = 0; i < oH2.length; i++) {
+
+                oH2[i].index = i;
+                oH2[i].onclick = function () {
+                    var n = this.index;
+                    if (this.className == 'active') {
+                        this.className = '';
+                        oUl[n].style.display = 'none';
+                    } else {
+                        for (var i = 0; i < oUl.length; i++) {
+                            oH2[i].className='';
+                            oUl[i].style.display = 'none';
+                        }
+
+                        this.className = 'active';
+                        oUl[n].style.display = 'block';
+                    }
+
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<ul id="menu">
+    <li>
+        <h2>菜单一</h2>
+        <ul class="lis">
+            <li>列表1</li>
+            <li>列表2</li>
+            <li>列表3</li>
+            <li>列表4</li>
+        </ul>
+    </li>
+    <li>
+        <h2>菜单二</h2>
+        <ul class="lis">
+            <li>列表1</li>
+            <li>列表2</li>
+            <li>列表3</li>
+            <li>列表4</li>
+        </ul>
+    </li>
+    <li>
+        <h2>菜单三</h2>
+        <ul class="lis">
+            <li>列表1</li>
+            <li>列表2</li>
+            <li>列表3</li>
+            <li>列表4</li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>

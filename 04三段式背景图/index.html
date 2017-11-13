@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04-三段式背景图</title>
+
+    <style>
+        .content{
+            width: 1024px;
+            margin: 50px auto 0;
+        }
+
+        input{
+            width: 200px;
+            height: 36px;
+            line-height: 36px;
+            border: 0px;
+            outline: none;
+            background: rgba(255,255,255,0);
+        }
+
+        .btn, .btn_l, .btn_r{
+            height: 36px;
+        }
+
+        .btn{
+            width: 200px;
+            background: url("img/btn_bg.png") repeat-x;
+        }
+
+        .btn_l{
+            background: url("img/btn_bg.png") no-repeat 0 -36px;
+        }
+
+        .btn_r{
+            background: url("img/btn_bg.png") no-repeat right -72px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="content">
+        <div class="btn">
+            <div class="btn_l">
+                <div class="btn_r">
+                    <input type="button" value="提交" onclick="alert(0);">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

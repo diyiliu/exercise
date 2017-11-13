@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03-清除浮动</title>
+</head>
+<style>
+
+    .content{
+        margin: 50px auto 0;
+        width: 960px;
+        background-color: grey;
+        border: 1px solid seagreen;
+        /*overflow: hidden;*/
+    }
+
+    .clear{
+        zoom: 1;
+    }
+
+    .clear:after{
+        content: ' ';
+        display: block;
+        clear: both;
+    }
+
+    .left{
+        float: left;
+        width: 245px;
+        height: 600px;
+        background-color: tomato;
+    }
+
+    .right{
+        float: right;
+        width: 700px;
+        height: 600px;
+        background-color: darkcyan;
+    }
+
+</style>
+<body>
+
+<div class="content clear">
+    <div class="left">左</div>
+    <div class="right">右</div>
+</div>
+</body>
+</html>

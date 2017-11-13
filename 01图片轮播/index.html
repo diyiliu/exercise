@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01-图片轮播</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #slider {
+            width: 760px;
+            height: 380px;
+            margin: 100px auto;
+            border: 1px solid #cccccc;
+            position: relative;
+        }
+
+        #slider img {
+            width: 760px;
+            height: 380px;
+        }
+
+        #slider span {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 760px;
+            line-height: 28px;
+            text-align: center;
+            color: #ffffff;
+            /*background-color: tomato;*/
+        }
+
+        #slider .prev, #slider .next {
+            position: absolute;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        #slider .prev a, #slider .next a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        #slider .prev {
+            top: 175px;
+            left: 15px;
+        }
+
+        #slider .next {
+            top: 175px;
+            right: 15px;
+        }
+
+        #slider ul {
+            position: absolute;
+            left: 0;
+            bottom: 10px;
+            width: 760px;
+            height: 20px;
+            text-align: center;
+            /*background-color: goldenrod;*/
+        }
+
+        #slider ul li {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            background-color: cyan;
+        }
+
+        #slider ul .active {
+            background-color: tomato;
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            var imgArr = ['img/1副本.jpg', 'img/2副本.jpg', 'img/6副本.jpg', 'img/7副本.jpg'];
+
+            var oPrev = document.getElementById('prev');
+            var oNext = document.getElementById('next');
+
+            var oImg = document.getElementsByTagName('img')[0];
+            var oSpan = document.getElementsByTagName('span')[0];
+            var oUl = document.getElementsByTagName('ul')[0];
+            var oLi = oUl.getElementsByTagName('li');
+
+            for (var i = 0; i < imgArr.length; i++) {
+                oUl.innerHTML += '<li></li>';
+            }
+
+
+            var num = 0;
+            fnTab();
+
+            function fnTab() {
+                oImg.src = imgArr[num];
+                oSpan.innerHTML = 1 + num + ' / ' + imgArr.length;
+                for (var i = 0; i < oLi.length; i++) {
+                    oLi[i].className = '';
+                }
+                oLi[num].className = 'active';
+            }
+
+            for (var i = 0; i < oLi.length; i++) {
+                oLi[i].index = i;
+                oLi[i].onclick = function () {
+                    num = this.index;
+                    fnTab();
+                }
+            }
+
+            oPrev.onclick = function () {
+                num--;
+                if (num < 0) {
+                    num = imgArr.length - 1;
+                }
+                fnTab();
+            }
+
+            oNext.onclick = function () {
+                num++;
+                if (num > imgArr.length - 1) {
+                    num = 0;
+                }
+                fnTab();
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="slider">
+    <img src="img/1副本.jpg" alt="">
+    <span>1 / 4</span>
+    <p class="prev" id="prev"><a href="#">&lt;</a></p>
+    <p class="next" id="next"><a href="#">&gt;</a></p>
+    <ul></ul>
+</div>
+</body>
+</html>
