@@ -1,0 +1,183 @@
+/* 清除默认样式 */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, form, input, textarea, p {
+    margin: 0;
+    padding: 0
+}
+
+li {
+    list-style: none;
+}
+
+body {
+    background: #e8e9eb;
+    padding-top: 104px;
+    font-family: 微软雅黑;
+}
+
+.clear{
+    zoom: 1;
+}
+.clear:after{
+    content: ' ';
+    display: block;
+    clear: both;
+}
+
+#header {
+    background: #ffffff url("../image/header_bg.jpg") no-repeat;
+    background-size: cover;
+    width: 960px;
+    height: 572px;
+    margin: 0 auto;
+}
+
+#header .nav {
+    width: 704px;
+    height: 52px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 52px;
+    font-family: Verdana;
+    color: #ffffff;
+}
+
+#content{
+    background-color: #ffffff;
+    width: 960px;
+    margin:0 auto;
+    padding-top: 38px;
+    padding-bottom: 40px;
+}
+
+#content .life{
+    width: 706px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#content .life h2, #content .life > p {
+    text-align: center;
+}
+
+#content .life h2{
+    font-family: 黑体;
+    font-weight: normal;
+    font-size: 20px;
+    line-height:38px;
+}
+
+#content .life > p{
+    line-height: 22px;
+    margin: 20px auto;
+}
+
+#content .life p {
+    color: #888888;
+}
+
+#content .life_h {
+    width: 726px;
+    margin-top: 38px;
+}
+
+#content .life_h li{
+    float: left;
+    margin-right:20px;
+}
+
+#content .life_h img{
+    width: 222px;
+    height: 140px;
+}
+
+#content .life_v{
+    width: 728px;
+    margin-top: 26px;
+}
+
+#content .life_v li{
+    float: left;
+    margin-right:20px;
+}
+
+#content .life_v img{
+    width: 162px;
+    height: 224px;
+}
+
+
+#content .travel {
+    width: 706px;
+    margin:38px auto;
+}
+
+#content .travel h2{
+    font-size: 16px;
+    font-family: 黑体;
+    line-height: 28px;
+}
+
+#content .travel ul{
+    margin-top: 20px;
+    width: 726px;
+}
+
+#content .travel li{
+    float: left;
+    margin-right:20px;
+}
+
+#content .travel img{
+    width: 222px;
+    height: 140px;
+}
+
+#footer{
+    background-color: #ffffff;
+    width: 960px;
+    height: 170px;
+    margin:0 auto;
+    border-top:2px solid #eeeeee;
+}
+
+#footer .contact{
+    width: 706px;
+    margin: 0 auto;
+    padding: 42px 0 0 0;
+    overflow: hidden;
+}
+
+#footer ul{
+    width: 708px;
+}
+
+#footer li{
+    float: left;
+    width: 234px;
+    height: 98px;
+    border-right: 2px solid #e0e0e0;
+}
+
+#footer .contact h2{
+    font-family: 宋体;
+    font-size: 14px;
+    color: #333333;
+    margin: 30px 0 0 52px;
+}
+
+#bottom{
+    width: 960px;
+    margin: 0 auto;
+    border-top:2px solid #a8a4a3;
+    height: 56px;
+    background-color: #282421;
+}
+
+#bottom .nav{
+    width: 706px;
+    margin: 0 auto;
+}
