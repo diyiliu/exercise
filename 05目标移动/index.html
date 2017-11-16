@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05-目标移动</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            var oDivArr = document.getElementsByTagName('div');
+
+            var count = 10;
+            var str = "";
+            for (var i = 0; i < count; i++) {
+                str += '<div id = "oDiv' + i + '" style="top: 50px;left: ' + (40 + i * 110) + 'px"></div>';
+            }
+            document.getElementsByTagName('body')[0].innerHTML = str;
+
+            var timer = null;
+            var num = 0;
+            var rang = [50, 600];
+            var target = rang[1];
+            document.onclick = function () {
+                if (num == 0 || num == oDivArr.length) {
+                    num = 0;
+                } else {
+                    return;
+                }
+
+                clearInterval(timer);
+                timer = setInterval(function () {
+                    doMove(oDivArr[num], 'top', 25, target, function () {
+                        //todo 需要判断最后一个运动完成。
+                    });
+                    if (++num == oDivArr.length) {
+                        clearInterval(timer);
+                        target = target == rang[0] ? rang[1] : rang[0];
+                    }
+                }, 150);
+            }
+        }
+
+        function doMove(obj, dir, speed, target, enFn) {
+            speed = parseInt(getStyle(obj, dir)) < target ? speed : -speed;
+
+            clearInterval(obj.timer);
+
+            obj.timer = setInterval(function () {
+
+                var next = parseInt(getStyle(obj, dir)) + speed;
+
+                if ((next > target && speed > 0) || (next < target && speed < 0)) {
+                    next = target;
+                }
+
+                obj.style[dir] = next + 'px';
+
+                if (parseInt(getStyle(obj, dir)) == target) {
+                    clearInterval(obj.timer);
+                    enFn && enFn();
+                }
+            }, 100)
+        }
+
+
+        function getStyle(obj, attr) {
+
+            return obj.currentStyle ? obj.currentStyle[attr] : window.getComputedStyle(obj)[attr];
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>
