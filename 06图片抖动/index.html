@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>06-图片抖动</title>
+    <style>
+        img {
+            width: 240px;
+            height: 180px;
+            position: absolute;
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            var str = "";
+            for (var i = 0; i < 5; i++) {
+                str += '<img src="img/IMG_' + (2227 + i) + '.JPG" alt="" style="top: 100px;left: ' + (10 + i * 250) + 'px">';
+            }
+
+            document.body.innerHTML = str;
+            var oImgArr = document.getElementsByTagName('img');
+            for(var i = 0; i < oImgArr.length; i++){
+                var oImg = oImgArr[i];
+
+                oImg.left = getStyle(oImg, 'left');
+                oImg.top = getStyle(oImg, 'top');
+                oImg.onmouseover = function () {
+                    var _this = this;
+                    shake(this, 'left', function () {
+                        shake(_this, 'top');
+                    });
+                }
+            }
+        }
+
+        function shake(obj, attr, enFn) {
+            var pos = obj[attr];
+            var shift = [];
+            for (var i = 20; i > 0; i -= 2) {
+                shift.push(i, -i);
+            }
+            shift.push(0);
+
+            var num = 0;
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                obj.style[attr] = parseInt(pos) + shift[num] + 'px';
+                if (++num == shift.length) {
+                    clearInterval(obj.timer);
+
+                    enFn && enFn();
+                }
+            }, 20);
+        }
+
+        function getStyle(obj, attr) {
+
+            return obj.currentStyle ? obj.currentStyle[attr] : window.getComputedStyle(obj)[attr];
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>
