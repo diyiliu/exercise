@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>07-拖拽继承</title>
+    <script src="js/Drag.js"></script>
+    <script src="js/LimitDrag.js"></script>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            text-align: center;
+        }
+
+        #div1{
+            background: darkcyan;
+        }
+
+        #div2{
+            background: gold;
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+
+            new Drag('div1');
+            new LimitDrag('div2');
+        }
+    </script>
+</head>
+<body>
+<div id="div1">第一个</div>
+<div id="div2">第二个</div>
+</body>
+</html>
