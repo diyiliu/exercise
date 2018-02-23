@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <title>事件绑定</title>
+    <script src="js/tool.js"></script>
+    <script src="js/base.js"></script>
+</head>
+<body>
+<input type="button" id="test" value="按钮">
+
+<script>
+    window.onload = function () {
+
+        var btn = $().getId('test').elements[0];
+
+        addEvent(btn, 'click', fn1);
+        addEvent(btn, 'click', fn2);
+        addEvent(btn, 'click', fn3);
+
+        removeEvent(btn, 'click', fn2);
+
+        function fn1(e) {
+
+            alert(1 + this.value + e.clientX);
+        }
+
+        function fn2(e) {
+
+            alert(2 + this.value + e.clientX);
+        }
+
+        function fn3(e) {
+
+            alert(3 + this.value + e.clientX);
+        }
+    }
+</script>
+</body>
+</html>
