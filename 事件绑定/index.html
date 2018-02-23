@@ -8,6 +8,7 @@
 </head>
 <body>
 <input type="button" id="test" value="按钮">
+<a href="http://diyiliu.cc" id="a">帝一流导航</a>
 
 <script>
     window.onload = function () {
@@ -34,6 +35,11 @@
 
             alert(3 + this.value + e.clientX);
         }
+
+        var a = $().getId('a').elements[0];
+        addEvent(a, 'click', function (e) {
+            e.preventDefault();
+        })
     }
 </script>
 </body>
