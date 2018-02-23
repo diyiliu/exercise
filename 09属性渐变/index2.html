@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>09-属性渐变</title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background-color: tomato;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+        }
+
+        #div2 {
+            width: 200px;
+            height: 200px;
+            background-color: darkcyan;
+            position: absolute;
+            top: 300px;
+            left: 50px;
+        }
+    </style>
+
+
+    <script>
+        window.onload = function () {
+            var oDiv1 = document.getElementById('div1');
+            var oDiv2 = document.getElementById('div2');
+
+
+            oDiv1.onmousemove = function () {
+
+                startMove(this, 'width', 600);
+            }
+
+            oDiv1.onmouseout = function () {
+
+                startMove(this, 'width', 200);
+            }
+
+            oDiv2.onmousemove = function () {
+
+                startMove(this, 'height', 600);
+            }
+
+            oDiv2.onmouseout = function () {
+
+                startMove(this, 'height', 200);
+            }
+        }
+
+
+        function startMove(obj, attr, target) {
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                var cur = parseInt(getStyle(obj, attr));
+                if (cur == target) {
+                    clearInterval(obj.timer)
+                } else {
+                    var speed = (target - cur) / 10;
+                    speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                    obj.style[attr] = cur + speed + 'px';
+                }
+            }, 30)
+        }
+
+        function getStyle(obj, attr) {
+            return obj.currentStyle ? obj.currentStyle[attr] : window.getComputedStyle(obj)[attr];
+        }
+    </script>
+</head>
+<body>
+<div id="div1">
+
+</div>
+
+<div id="div2">
+
+</div>
+</body>
+</html>

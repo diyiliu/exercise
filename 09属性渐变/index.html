@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>09-属性渐变</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background-color: tomato;
+            position: absolute;
+            top: 50px;
+            left: 0px;
+        }
+
+        #div2 {
+            width: 800px;
+            height: 200px;
+            margin: 50px 0 0 200px;
+            border-left: 2px solid black;
+            border-right: 2px solid black;
+            box-sizing: border-box;
+        }
+    </style>
+
+
+    <script>
+        window.onload = function () {
+            var oDiv1 = document.getElementById('div1');
+            var oInput1 = document.getElementById('input1');
+            var oInput2 = document.getElementById('input2');
+
+            oInput1.onclick = function () {
+                startMove(oDiv1, 'left', 800);
+            }
+
+            oInput2.onclick = function () {
+                startMove(oDiv1, 'left', 200);
+            }
+        }
+
+
+        function startMove(obj, attr, target) {
+            clearInterval(obj.timer);
+
+            obj.timer = setInterval(function () {
+                var cur = parseInt(getStyle(obj, attr));
+                if (cur == target) {
+                    clearInterval(obj.timer)
+                } else {
+                    var speed = (target - cur) / 30;
+                    speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                    obj.style[attr] = cur + speed + 'px';
+                }
+            }, 30)
+        }
+
+        function getStyle(obj, attr) {
+            return obj.currentStyle ? obj.currentStyle[attr] : window.getComputedStyle(obj)[attr];
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="运动&gt;" id="input1">
+<input type="button" value="运动&lt;" id="input2">
+<div id="div1">
+
+</div>
+
+<div id="div2">
+
+</div>
+</body>
+</html>
