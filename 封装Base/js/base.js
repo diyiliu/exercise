@@ -3,14 +3,24 @@ $ = function (_this) {
 };
 
 function Base(_this) {
+    this.scope = document;
     this.elements = [];
 
     if (_this != undefined) {
-        this.elements[0] = _this;
+        this.scope = _this;
     }
 
+    this.get = function () {
+        if (_this != undefined) {
+            this.elements[0] = _this;
+            this.scope = document;
+        }
+
+        return this;
+    };
+
     this.getId = function (id) {
-        var item = document.getElementById(id);
+        var item = this.scope.getElementById(id);
         if (item) {
             this.elements.push(item);
         }
@@ -19,7 +29,7 @@ function Base(_this) {
     };
 
     this.getName = function (name) {
-        var item = document.getElementsByName(name);
+        var item = this.scope.getElementsByName(name);
         for (var i = 0; i < item.length; i++) {
             this.elements.push(item[i]);
         }
@@ -28,7 +38,7 @@ function Base(_this) {
     };
 
     this.getTagName = function (tag) {
-        var item = document.getElementsByTagName(tag);
+        var item = this.scope.getElementsByTagName(tag);
 
         for (var i = 0; i < item.length; i++) {
             this.elements.push(item[i]);
@@ -38,16 +48,16 @@ function Base(_this) {
     };
 
     this.getClass = function (clazz) {
-        if (document.getElementsByClassName) {
-            var item = document.getElementsByClassName(clazz);
+        if (this.scope.getElementsByClassName) {
+            var item = this.scope.getElementsByClassName(clazz);
             for (var i = 0; i < item.length; i++) {
                 this.elements.push(item[i]);
             }
         } else {
-            var all = document.getElementsByTagName('*');
+            var all = this.scope.getElementsByTagName('*');
             for (var i = 0; i < all.length; i++) {
 
-                if (all[i].className == clazz){
+                if (all[i].className == clazz) {
 
                     this.elements.push(all[i]);
                 }
@@ -100,7 +110,57 @@ function Base(_this) {
 
             this.elements[i].onclick = fn;
         }
-    }
+    };
+
+    // 鼠标移入移除
+    this.hover = function (fn1, fn2) {
+
+        for (var i = 0; i < this.elements.length; i++) {
+
+            this.elements[i].onmouseover = fn1;
+        }
+
+        for (var i = 0; i < this.elements.length; i++) {
+
+            this.elements[i].onmouseout = fn2;
+        }
+
+        return this;
+    };
+
+    // 隐藏
+    this.hide = function () {
+        for (var i = 0; i < this.elements.length; i++) {
+
+            this.elements[i].style.display = 'none';
+        }
+
+        return this;
+    };
+
+    // 显示
+    this.show = function () {
+
+        for (var i = 0; i < this.elements.length; i++) {
+
+            this.elements[i].style.display = 'block';
+        }
+
+        return this;
+    };
+
+    // 居中
+    this.center = function (w, h) {
+        var l = (document.documentElement.clientWidth - w) / 2;
+        var t = (document.documentElement.clientHeight - h) / 2;
+        for (var i = 0; i < this.elements.length; i++) {
+
+            this.elements[i].style.left = l + 'px';
+            this.elements[i].style.top = t + 'px';
+        }
+
+        return this;
+    };
 
     // 浏览器窗口事件
     this.resize = function (fn) {

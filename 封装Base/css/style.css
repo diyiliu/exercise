@@ -1,0 +1,55 @@
+/* 清除默认样式 */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, form, input, textarea, p {
+    margin: 0;
+    padding: 0
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    text-decoration: none;
+}
+
+body {
+    background-color: #f9f9f9;
+    font: 14px/1.5 "PingFang SC", "Lantinghei SC", "Microsoft YaHei", "HanHei SC", "Helvetica Neue", "Open Sans", Arial, "Hiragino Sans GB", "微软雅黑", STHeiti, "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+
+.dropMenu{
+    display: inline-block;
+    padding: 0 15px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #cccccc;
+    position: absolute;
+}
+
+.dropMenu a{
+    color: #666;
+}
+
+.dropMenu .menu{
+    display: none;
+    position: absolute;
+    left: 0px;
+    top: 28px;
+    border: 1px solid #cccccc;
+    border-top: none;
+}
+
+.dropMenu .menu li{
+    padding: 0 10px;
+    height: 24px;
+    line-height: 24px;
+}
+
+.dropMenu .menu li:hover{
+
+    background: #cccccc;
+}
