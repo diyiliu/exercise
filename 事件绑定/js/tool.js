@@ -18,11 +18,25 @@ function addEvent(obj, type, fn) {
 
         obj['on' + type] = function () {
             for (var i in obj.events[type]){
-                obj.events[type][i].call(obj, window.event);
+                obj.events[type][i].call(obj, addEvent.fixEvent(window.event));
             }
         }
     }
 }
+
+// 修复IE浏览器 阻止默认行为和取消冒泡
+addEvent.fixEvent = function (e) {
+    e.preventDefault = function () {
+        this.returnValue = false;
+    };
+    
+    e.stopPropagation = function () {
+        this.cancelBubble = true;
+    };
+
+    return e;
+};
+
 
 function removeEvent(obj, type, fn) {
 

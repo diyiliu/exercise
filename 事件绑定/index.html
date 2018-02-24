@@ -15,6 +15,7 @@
 
         var btn = $().getId('test').elements[0];
 
+/*
         addEvent(btn, 'click', fn1);
         addEvent(btn, 'click', fn2);
         addEvent(btn, 'click', fn3);
@@ -35,11 +36,20 @@
 
             alert(3 + this.value + e.clientX);
         }
+*/
 
         var a = $().getId('a').elements[0];
         addEvent(a, 'click', function (e) {
             e.preventDefault();
-        })
+        });
+
+        addEvent(btn, 'click', fn);
+        addEvent(document, 'click', fn);
+
+        function fn(e) {
+            e.stopPropagation();
+            alert(12345);
+        }
     }
 </script>
 </body>
